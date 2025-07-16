@@ -44,7 +44,7 @@ public class AuthServiceTest {
         request.setName("John Doe");
         request.setEmail("john@example.com");
         request.setPassword("password123");
-        request.setRole("USER");
+        request.setRole("CUSTOMER");
 
         when(userRepository.existsByEmail(request.getEmail())).thenReturn(false);
         when(passwordEncoder.encode(request.getPassword())).thenReturn("encodedPassword");
@@ -74,7 +74,7 @@ public class AuthServiceTest {
         when(userRepository.existsByEmail(request.getEmail())).thenReturn(true);
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> authService.register(request));
-        assertEquals("User Already exists", exception.getMessage());
+        assertEquals("Registration Failed email already exists", exception.getMessage());
     }
 
     @Test

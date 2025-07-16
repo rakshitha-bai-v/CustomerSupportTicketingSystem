@@ -194,7 +194,6 @@ class TicketServiceTest {
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
             ticketService.getTicketsById("invalid");
         });
-
         assertTrue(exception.getMessage().contains("Ticket Not found"));
     }
 }
